@@ -1,0 +1,66 @@
+<main role="main" class="container">
+    <h4 class="cover-heading">Bienvenido</h4>
+    <div class="jumbotron">
+        <h1>Cargar Archivos</h1>
+        <div class="col-lg-6">
+            <form action="/Alumno/add" method="post" enctype="multipart/form-data">
+                <div class="input-group mb-3">
+                    <label class="btn btn-success" for="">
+                        <input required="" class="form-control bg-success text-white text-white" type="file"
+                            name="image" accept="application/pdf" />
+                    </label>
+                </div>
+                <button class="btn btn-success" type="submit">Subir Archivo</button>
+            </form>
+        </div>
+
+    </div>
+</main>
+
+<main role="main" class="container">
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h3 class="panel-title">Mis Archivos</h3>
+        </div>
+        <div class="panel-body">
+            <div class="table-responsive-sm">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th width="70%">Nombre del Archivo</th>
+                            <th width="13%">Descargar</th>
+                            <th width="10%">Eliminar</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                          {{#each filx}}
+                        <tr>
+                            <!-- DESCARGAR ARCHIVO-->
+                            <td>
+                               <h6>{{nombre_archivo}}</h6>                               
+                            </td>
+                            <td>
+                                <a href="/download/{{nombre_archivo}}" 
+                                    class="btn btn-info ">
+                                    <i class="fas fa-file-download"></i>
+                            </td>
+                            <!-- ELIMINAR ARCHIVO-->
+                            <td>                                
+                                <a href="/delete/{{_id}}"
+                                    class="btn btn-danger">
+                                    <i class="fas fa-trash-alt"
+                                        onclick="return confirm('Esta seguro de eliminar al alumno?');"> <span
+                                            class="glyphicon glyphicon-trash" aria-hidden="true"></span></a></i>
+                                </a>
+                            </td>
+                        </tr>
+                         {{/each}}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <!-- Fin tabla-->
+    </div>
+    </div>
+</main>

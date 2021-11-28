@@ -1,0 +1,56 @@
+{{!-- 
+ <pre>
+                        {{carreras}}
+                    </pre>
+<hr> --}}
+<div class="col-md-4 mx-auto">
+    <div class="card text-center">
+        <div class="card-header">
+            <h3 style="text-align: center;">Registro de Alumno</h3>
+        </div>
+        <div class="card-body">
+            <form action="/students/add" method="POST">
+                <div class="form-group">
+                    <input type="text" name="nombre" class="form-control" placeholder="Nombre(s)" autofocus required>
+                </div>
+                <div class="form-group">
+                    <input type="text" name="ap_paterno" class="form-control" placeholder="Apellido Paterno" autofocus required>
+                </div>
+                <div class="form-group">
+                    <input type="text" name="ap_materno" class="form-control" placeholder="Apellido Materno" autofocus required>
+                </div>
+                <div class="form-group">
+                    <input type="text" name="matricula" class="form-control" placeholder="Matricula" autofocus required>
+                </div>
+                <div class="form-group">
+                    <input type="password" name="password" class="form-control" placeholder="Contraseña" autofocus
+                        required>
+                </div>
+                <div class="form-group">                   
+                    <label for="exampleFormControlSelect1">Carrera</label>
+                    <select class="form-control" name="carrera">
+                        <option value="0">Seleccione:</option>
+                        {{#each carreras}}
+                            <option value="{{_id}}">{{Nombre_carrera}}</option>
+                        {{/each}}                
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="exampleFormControlSelect1">Semestre</label>
+                    <!-- MODIFICAR SELECCIONAR POR LA BASE DE DATOS -->
+                    <select class="form-control" name="semestre">
+                        <!-- <option selected>Elijir...</option> -->
+                        <option value="0">Seleccione:</option>
+                        {{#each semestre}}
+                            <option value="{{_id}}">{{Nombre_semestre}}</option>
+                        {{/each}} 
+                    </select>
+                </div>
+                <input type="submit" class="btn  btn-outline-success btn-block"  
+                    onclick="return confirm('Esta seguro de que tus datos son correctos?');"> <span
+                    class="glyphicon glyphicon-trash" aria-hidden="true"></span> </a></td>
+                <br>        
+            </form>
+        </div>
+    </div>
+</div>

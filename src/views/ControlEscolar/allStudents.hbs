@@ -1,0 +1,90 @@
+<body class="text-center">
+    <div class="cover-container d-flex  h-100 p-3 mx-auto flex-column">
+        <main role="main" class="inner cover">
+            <div class="container">
+                <div>
+                    <a href="/students/createStudent" class="btn btn-primary"> +Añadir Alumno </a>
+                </div>
+                <hr>
+                <form action="" method="POST">
+                    <div class="input-group mb-3">
+
+                        <select class="custom-select" name="filtro">
+                            <option value="0">Seleccione:</option>
+                            <?php
+                                    $sqlCarrera = "SELECT * FROM carrera";
+                                    $resultCarrera = mysqli_query($conexion, $sqlCarrera);
+                                    while ($filasCa = mysqli_fetch_array($resultCarrera)) {
+                                        echo '<option value="' . $filasCa["id"] . '">' . $filasCa["Nombre"] . '</option>';
+                                    }
+                                    ?>
+                        </select>
+                        <select class="custom-select" name="semestres">
+                            <option value="0">Seleccione:</option>
+                            <?php
+                                    $sqlSemestre = "SELECT * FROM semestre";
+                                    $resultCarrera = mysqli_query($conexion, $sqlSemestre);
+                                    while ($filasSe = mysqli_fetch_array($resultCarrera)) {
+                                        echo '<option value="' . $filasSe["id"] . '">' . $filasSe["Semestre"] . '</option>';
+                                    }
+                                    ?>
+                        </select>
+                        <div class="input-group-append">
+                            <button class="btn btn-success" name="filtrar" type="submit">
+                                Seleccionar
+                            </button>
+                        </div>
+                    </div>
+                </form>
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Matricula</th>
+                            <th>Carrera</th>
+                            <th>Contraseña</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <h4>Lista Alumnos</h4>
+                        {{!-- JS --}}                    
+                        {{#each alumnos}}
+                        <tr>
+                            <td>
+                                <font style="text-transform: capitalize;">{{nombre}} {{ap_paterno}}
+                                    {{ap_materno}}</font>
+                            </td>
+                            <td>
+                                <h6>{{matricula}}</h6>
+                            </td>
+                            <td>
+                                <h6>{{carrera}}</h6>
+                            </td>
+                            <td>
+                                {{password}}
+                            </td>
+                            <td>
+                                <a href="edit.php?id={{_id}}" class="btn btn-warning">
+                                    <i class="fas fa-file-pdf"></i>
+                                </a>
+                                <a href="/students/update/{{_id}}" class="btn btn-secondary">
+                                    <i class="fas fa-edit"></i>
+                                </a>
+                                <form action="/students/delete/{{_id}}?_method=DELETE" method="POST">
+                                    <input type="hidden" name="_method" value="DELETE">
+                                    <button type="submit" class="btn btn-danger"><i class="fas fa-trash-alt"
+                                            onclick="return confirm('Esta seguro de eliminar al alumno?');"> <span
+                                                class="glyphicon glyphicon-trash" aria-hidden="true"></span> </i>
+                                    </button>
+
+                                </form>
+                            </td>
+                            </td>
+                        </tr>
+                        {{/each}}
+                    </tbody>
+                </table>
+
+            </div>
+    </div>
