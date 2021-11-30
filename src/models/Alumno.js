@@ -7,7 +7,7 @@ const AlumnoSchema = new Schema({
     },
     ap_paterno:{
         type: String,
-        requeried: true
+        requeried: false
     },
     ap_materno:{
         type: String,
